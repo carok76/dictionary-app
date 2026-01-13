@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Search from './Search';
+import Dictionary from "./Dictionary";
 
 function App() {
-  let [keyword, setKeyword] = useState(null);
+  let [keyword, setKeyword] = useState("sunset");
 
   function handleSearch(inputKeyword) {
     setKeyword(inputKeyword);
@@ -16,6 +16,7 @@ function App() {
         <h1>Dictionary</h1>
       </header>
       <Search onSearch={handleSearch} />
+      <Dictionary />
       <footer>This project was coded by Carolin Krahmer and is on GitHub and hosted on Netlify.</footer>
     </div>
   );
