@@ -1,5 +1,10 @@
-//import React from "react";
+import "./Dictionary.css";
 
 export default function Dictionary(props) {
-    return (console.log(props.keyword));
+
+    return (
+    <div>
+        <p>Gesuchtes Wort: <strong>{props.keyword || "—"}</strong></p>
+    </div>
+    );
 }

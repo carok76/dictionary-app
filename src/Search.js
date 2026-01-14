@@ -1,13 +1,25 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./Search.css";
 
 export default function Search({ onSearch }) {
-    let [input, setInput] = useState("");
+    let [keyword, setKeyword] = useState("sunset");
+
+    function handleResponse(response) {
+        console.log(response.data);
+    }
 
     function handleSubmit(event) {
         event.preventDefault();
-        const trimmed = input.trim();
+
+        let apikey = "o922906b22974ec99e9bc3858a42ft20";
+        let apiurl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apikey}`;
+
+        const trimmed = keyword.trim();
         if(trimmed) onSearch(trimmed);
+
+        axios.get(apiurl).then(handleResponse);
+
     }
 
     return(
@@ -16,9 +28,9 @@ export default function Search({ onSearch }) {
                 <input
                     type="Search"
                     placeholder="Enter a word"
-                    value={input}
+                    value={keyword}
                     className="InputKeyword"
-                    onChange={(event) => setInput(event.target.value)}
+                    onChange={(event) => setKeyword(event.target.value)}
                 />
                 <input
                     type="submit"

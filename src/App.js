@@ -4,10 +4,10 @@ import Search from './Search';
 import Dictionary from "./Dictionary";
 
 function App() {
-  let [keyword, setKeyword] = useState("sunset");
+  const [keyword, setKeyword] = useState("");
 
-  function handleSearch(inputKeyword) {
-    setKeyword(inputKeyword);
+  function handleSearch(keyword) {
+    setKeyword(keyword);
   }
 
   return (
@@ -15,9 +15,13 @@ function App() {
       <header>
         <h1>Dictionary</h1>
       </header>
+
       <Search onSearch={handleSearch} />
-      <Dictionary keyword={keyword}/>
-      <footer>This project was coded by Carolin Krahmer and is on GitHub and hosted on Netlify.</footer>
+      <Dictionary keyword={keyword} />
+
+      <footer>
+        This project was coded by Carolin Krahmer and is on GitHub and hosted on Netlify.
+      </footer>
     </div>
   );
 }
