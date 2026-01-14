@@ -3,7 +3,7 @@ import './App.css';
 import Search from './Search';
 
 function App() {
-  const [keyword, setKeyword] = useState("");
+  const [, setKeyword] = useState("");
 
   function handleSearch(keyword) {
     setKeyword(keyword);
