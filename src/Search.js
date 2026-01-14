@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Search.css";
+import Dictionary from "./Dictionary";
 
 export default function Search({ onSearch }) {
     let [keyword, setKeyword] = useState("sunset");
+    let [result, setResult] = useState({});
 
     function handleResponse(response) {
         console.log(response.data);
+        setResult(response.data);
     }
 
     function handleSubmit(event) {
@@ -38,6 +41,7 @@ export default function Search({ onSearch }) {
                     className="InputButton"
                 />
             </form>
+            <Dictionary result={result} keyword={keyword} />
         </div>
     )
 }

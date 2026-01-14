@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
 import Search from './Search';
-import Dictionary from "./Dictionary";
 
 function App() {
   const [keyword, setKeyword] = useState("");
@@ -17,7 +16,6 @@ function App() {
       </header>
 
       <Search onSearch={handleSearch} />
-      <Dictionary keyword={keyword} />
 
       <footer>
         This project was coded by Carolin Krahmer and is on GitHub and hosted on Netlify.
