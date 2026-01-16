@@ -8,12 +8,14 @@ export default function Pictures({ pictures }) {
     <section className="Pictures">
       {pictures.map((picture, index) => (
         <div className="PictureItem" key={index}>
-          <img
-            src={picture.src.landscape}
-            className="PictureImg"
-            alt=""
-            loading="lazy"
-          />
+            <a href={picture.src.original} target="_blank" rel="noopener noreferrer">
+            <img
+                src={picture.src.landscape}
+                className="PictureImg"
+                alt={picture.src.alt}
+                loading="lazy"
+            />
+          </a>
         </div>
       ))}
     </section>
