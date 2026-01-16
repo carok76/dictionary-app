@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Search.css";
 import Dictionary from "./Dictionary";
+import Pictures from "./Pictures";
 
 export default function Search({ onSearch }) {
     let [keyword, setKeyword] = useState("");
     let [result, setResult] = useState({});
     let [error, setError] = useState(null);
+    let [pictures, setPictures] = useState(null);
 
-    function handleResponse(response) {
+    function handleDictionaryResponse(response) {
         console.log(response.data);
 
         if (response.data && Array.isArray(response.data.meanings) && response.data.meanings.length > 0) {
@@ -20,11 +22,21 @@ export default function Search({ onSearch }) {
         }
     }
 
+    function handlePictureResponse(response) {
+        console.log(response.data);
+
+        setPictures(response.data.photos);
+
+    }
+
     function handleSubmit(event) {
         event.preventDefault();
 
         let apikey = "o922906b22974ec99e9bc3858a42ft20";
         let apiurl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apikey}`;
+
+        let picapikey = "o922906b22974ec99e9bc3858a42ft20";
+        let picurl = `https://api.shecodes.io/images/v1/search?query=${keyword}&key=${picapikey}`
 
         const trimmed = keyword.trim();
 
@@ -39,10 +51,12 @@ export default function Search({ onSearch }) {
 
         if(trimmed) onSearch(trimmed);
 
-        axios.get(apiurl).then(handleResponse).catch(() => {
+        axios.get(apiurl).then(handleDictionaryResponse).catch(() => {
             setResult({});
             setError("Network error. Please try again.");
         });
+
+        axios.get(picurl).then(handlePictureResponse);
 
     }
 
@@ -70,6 +84,7 @@ export default function Search({ onSearch }) {
             {error && <p className="ErrorMessage">{error}</p>}
 
             <Dictionary result={result} keyword={keyword} />
+            <Pictures pictures={pictures} />
         </div>
     )
 }

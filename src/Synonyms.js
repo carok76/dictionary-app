@@ -7,7 +7,7 @@ export default function Synonyms({ synonyms }) {
   return (
     <div className="Synonyms">
       <ul>
-        <li>See also:</li>
+        <li>Similar:</li>
         {synonyms.map((synonym, index) => (
           <li key={index}>{synonym}</li>
         ))}
