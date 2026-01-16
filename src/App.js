@@ -15,6 +15,8 @@ function App() {
         <h1>Dictionary</h1>
       </header>
 
+      <h2>What word do you want to look for?</h2>
+
       <Search onSearch={handleSearch} />
 
       <footer>

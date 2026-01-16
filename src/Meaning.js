@@ -1,10 +1,11 @@
 import Synonyms from "./Synonyms"
+import "./Meaning.css";
 
 export default function Meaning({meaning}) {
     function showExamples() {
         if(!meaning.example) return null;
         return (
-        <div><strong>Examples: </strong>{meaning.example && (
+        <div>{meaning.example && (
             <p><em>{meaning.example}</em></p>
             )}
         </div>
@@ -14,8 +15,12 @@ export default function Meaning({meaning}) {
     return (
         <div className="Meaning">
             <h3>{meaning.partOfSpeech}</h3>
-            <p><strong>Definition: </strong>{meaning.definition}</p>
-            {showExamples()}
+            <div className="definition">
+                {meaning.definition}
+            </div>
+            <div className="example">
+                {showExamples()}
+            </div>
             <Synonyms synonyms={meaning.synonyms}/>
         </div>
     )

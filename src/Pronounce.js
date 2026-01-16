@@ -1,4 +1,7 @@
 import React from "react";
+import "./Pronounce.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 
 export default function Pronounce({ text, lang = "en-GB" }) {
   function speak() {
@@ -16,7 +19,7 @@ export default function Pronounce({ text, lang = "en-GB" }) {
 
   return (
     <button type="button" onClick={speak}>
-      🔊 
+      <FontAwesomeIcon icon={faBullhorn} />
     </button>
   );
 }

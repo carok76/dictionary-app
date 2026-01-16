@@ -8,12 +8,17 @@ export default function Dictionary({ result }) {
 
   return (
     <div className="Results">
-      <h2>{result.word}</h2>
-      <h3>{result.phonetic}</h3>
-        <Pronounce text={result.word} lang="en-US" />
-      {result.meanings.map((meaning, index) => (
-          <Meaning key={index} meaning={meaning}/>
-      ))}
+      <section className="Result">
+        <h2>{result.word}</h2>
+        <h3>{result.phonetic}
+          <Pronounce text={result.word} lang="en-US" />
+        </h3>
+      </section>  
+      <section className="Meanings">
+        {result.meanings.map((meaning, index) => (
+            <Meaning key={index} meaning={meaning}/>
+        ))}
+      </section>
     </div>
   );
 }

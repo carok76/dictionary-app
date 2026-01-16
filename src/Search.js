@@ -4,12 +4,20 @@ import "./Search.css";
 import Dictionary from "./Dictionary";
 
 export default function Search({ onSearch }) {
-    let [keyword, setKeyword] = useState("sunset");
+    let [keyword, setKeyword] = useState("");
     let [result, setResult] = useState({});
+    let [error, setError] = useState(null);
 
     function handleResponse(response) {
         console.log(response.data);
-        setResult(response.data);
+
+        if (response.data && Array.isArray(response.data.meanings) && response.data.meanings.length > 0) {
+            setResult(response.data);
+            setError(null);
+        } else {
+            setResult({});
+            setError("Word could not be found in dictionary. Please check the spelling or change the word.");
+        }
     }
 
     function handleSubmit(event) {
@@ -19,9 +27,22 @@ export default function Search({ onSearch }) {
         let apiurl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apikey}`;
 
         const trimmed = keyword.trim();
+
+        if (!trimmed) {
+            setResult({});
+            setError("Please enter a word.");
+            return;
+        }
+
+        setError(null);
+        setResult({});
+
         if(trimmed) onSearch(trimmed);
 
-        axios.get(apiurl).then(handleResponse);
+        axios.get(apiurl).then(handleResponse).catch(() => {
+            setResult({});
+            setError("Network error. Please try again.");
+        });
 
     }
 
@@ -37,10 +58,17 @@ export default function Search({ onSearch }) {
                 />
                 <input
                     type="submit"
-                    value="search"
+                    value="Search"
                     className="InputButton"
                 />
             </form>
+
+            <div className="hint">
+                suggested words: dachshund, wine, spring, ...
+            </div>
+
+            {error && <p className="ErrorMessage">{error}</p>}
+
             <Dictionary result={result} keyword={keyword} />
         </div>
     )

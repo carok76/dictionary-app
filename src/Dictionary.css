@@ -1,0 +1,25 @@
+.Results {
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.Result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Result, .Meaning {
+    background-color: #E8E2DA;
+    border-radius: 16px;
+    box-shadow: 0 0 0 2px rgba(184, 168, 154, 0.4);
+    padding: 10px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 600px;
+}
+
+.Results h2 {
+    text-align: center;
+}
